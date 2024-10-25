@@ -5,6 +5,7 @@ const fetch = require("node-fetch");
 const { Parser } = require("htmlparser2");
 var querystring = require("querystring");
 const session = require("express-session");
+const {issue} = require("./sdjwt.js");
 
 app.use(bodyParser.json());
 app.use(express.json());
@@ -80,21 +81,26 @@ app.post("/id_assertion_endpoint", (req, res) => {
 
   console.log("What the Issuer got:");
   console.log(req.body);
+
+  // const sdjwt = 
+
+  const secret = "shhhhh";
+
+  const holder = req.body.holder_key;
+
+  //const holder = "eyJjcnYiOiJQLTI1NiIsImt0eSI6IkVDIiwieCI6ImhfTGI2bGkzc05CU281RjB1TDNZa1BUemtZby1peEpGZmdqWWp4Z2thbk0iLCJ5IjoiNzZpZ3dsMkp3WkdBc3dMbVpwMjZ4a3B2Ulk4YmhxemhoVW9tUEhDMWdsVSJ9";
+
+  const sdjwt = issue(secret, holder, [
+    ["sub", "https://sgo.to"],
+    ["email", "goto@google.com"],
+    ["firstName", "Sam"],
+    ["lastName", "Goto"],
+  ]);
+
+  console.log(sdjwt);
   
   res.json({
-    //token: JSON.stringify({
-    //  hello: "world",
-    //}),
-    token: "eyJhbGciOiJFUzI1NiIsInR5cCI6InNkLWp3dCJ9." +
-      "eyJfc2QiOlsiSlpwQjQ1QVdyZExNd19fX1U0bHRVRTFmbWNCOEtDWFQwRW9MVGNkM2xLbyJd" +
-      "LCJjbmYiOnsiandrIjp7ImNydiI6IlAtMjU2Iiwia3R5IjoiRUMiLCJ4IjoiTEZpWFBGWmpB" +
-      "R0kzR2pEaHIxSDlwNnN6c182d0pUT1Y0d3E5c2JVZ2hwRSIsInkiOiJfMEtxU2RZYkJsbGJs" +
-      "a2JmdWpGc3gtQ0FsbUJhV1VjcV9ZQXVCRjRmNkNJIn19LCJpYXQiOjEyMzQsImlzcyI6Imh0" +
-      "dHBzOi8vaXNzdWVyLmV4YW1wbGUiLCJzdWIiOiJnb3RvQGdvb2dsZS5jb20ifQ." +
-      "lp7bazjJLzCaEDTOZ9mKdfM0ao-" +
-      "9hLfVRQ233NAaum4fiFTVqNRLKGDs93WQFBh1P8WeI4z7kV9c65ZotIitvg~" +
-      "WyJoQzg5cnV1OWJvTDFVM1hyckRTekdrTlRuVjVUMERVOVVHOGZOY202bmJVIiwibmFtZSIs" +
-      "IlNhbSJd~"
+    token: sdjwt
   });
 });
 
