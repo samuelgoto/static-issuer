@@ -1,0 +1,32 @@
+{
+  "name": "static-fedcm",
+  "version": "0.0.1",
+  "description": "Simplest Static FedCM IdP Implementation",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "cookie-parser": "^1.4.6",
+    "dns-query": "^0.11.2",
+    "express": "^4.17.1",
+    "express-session": "^1.18.0",
+    "htmlparser2": "^9.1.0",
+    "node-fetch": "^2.7.0",
+    "query-string": "^9.0.0"
+  },
+  "engines": {
+    "node": "12.x"
+  },
+  "repository": {
+    "url": "https://github.com/samuelgoto/static-fedcm"
+  },
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "glitch",
+    "express",
+    "body-parser"
+  ]
+}
