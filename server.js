@@ -5,7 +5,7 @@ const fetch = require("node-fetch");
 const { Parser } = require("htmlparser2");
 var querystring = require("querystring");
 const session = require("express-session");
-const {issue} = require("./sdjwt.js");
+const {issue, jwk} = require("./sdjwt.js");
 
 app.use(bodyParser.json());
 app.use(express.json());
@@ -15,6 +15,13 @@ app.use("/.well-known/web-identity", async (req, res) => {
   res.type("json");
   res.send({
     provider_urls: ["/fedcm.json"],
+  });
+});
+
+app.use("/.well-known/jwks.json", async (req, res) => {
+  res.type("json");
+  res.send({
+    keys: [await jwk()],
   });
 });
 
@@ -82,17 +89,13 @@ app.post("/id_assertion_endpoint", (req, res) => {
   console.log("What the Issuer got:");
   console.log(req.body);
 
-  // const sdjwt = 
-
-  const secret = "shhhhh";
-
   const holder = req.body.holder_key;
 
-  //const holder = "eyJjcnYiOiJQLTI1NiIsImt0eSI6IkVDIiwieCI6ImhfTGI2bGkzc05CU281RjB1TDNZa1BUemtZby1peEpGZmdqWWp4Z2thbk0iLCJ5IjoiNzZpZ3dsMkp3WkdBc3dMbVpwMjZ4a3B2Ulk4YmhxemhoVW9tUEhDMWdsVSJ9";
-
-  const sdjwt = issue(secret, holder, [
+  const sdjwt = issue(holder, [
     ["sub", "https://sgo.to"],
     ["email", "goto@google.com"],
+    ["name", "Sam Goto"],
+    ["picture", "https://pbs.twimg.com/profile_images/920758039325564928/vp0Px4kC_400x400.jpg"],
     ["firstName", "Sam"],
     ["lastName", "Goto"],
   ]);
