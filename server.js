@@ -19,7 +19,10 @@ app.use("/.well-known/web-identity", async (req, res) => {
 });
 
 app.use("/.well-known/jwks.json", async (req, res) => {
+  res.set("Access-Control-Allow-Origin", "*");
+
   res.type("json");
+
   const key = await jwk();
 
   // Some verifiers fail with these extra WebCrypto parameters.
