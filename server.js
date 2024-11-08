@@ -81,7 +81,7 @@ app.use("/client_metadata", (req, res) => {
 
 const tokens = {};
 
-app.post("/id_assertion_endpoint", (req, res) => {
+app.post("/id_assertion_endpoint", async (req, res) => {
   res.type("json");
   res.set("Access-Control-Allow-Origin", req.headers.origin);
   res.set("Access-Control-Allow-Credentials", "true");
@@ -91,7 +91,7 @@ app.post("/id_assertion_endpoint", (req, res) => {
 
   const holder = req.body.holder_key;
 
-  const sdjwt = issue(holder, [
+  const sdjwt = await issue(holder, [
     ["sub", "https://sgo.to"],
     ["email", "goto@google.com"],
     ["name", "Sam Goto"],
