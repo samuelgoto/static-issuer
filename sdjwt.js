@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const { createHash, randomBytes } = require("crypto");
 const jwkToPem = require('jwk-to-pem');
-const crypto = require("crypto");
+const crypto = globalThis.crypto;
 
 const sha256 = (message) =>
       Base64Url.encode(createHash("sha256").update(message).digest("base64"));
