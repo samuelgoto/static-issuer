@@ -20,8 +20,14 @@ app.use("/.well-known/web-identity", async (req, res) => {
 
 app.use("/.well-known/jwks.json", async (req, res) => {
   res.type("json");
+  const key = await jwk();
+
+  // Some verifiers fail with these extra WebCrypto parameters.
+  delete key.key_ops;
+  delete key.ext;
+
   res.send({
-    keys: [await jwk()],
+    keys: [key],
   });
 });
 
