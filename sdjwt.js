@@ -118,9 +118,7 @@ async function verifyJWT(jwt, pub) {
 }
 
 async function issue(holder, frame = []) {
-  const holderKey = JSON.parse(
-    Buffer.from(Base64Url.decode(holder), "base64").toString()
-  );
+  const holderKey = JSON.parse(holder);
 
   const disclose = (name, value) =>
         Base64Url.encode(Buffer.from(JSON.stringify([salt(), name, value])).toString('base64'));
