@@ -70,7 +70,7 @@ app.use("/accounts", (req, res) => {
     accounts: [{
       id: "1234",
       account_id: "1234",
-      email: "goto@google.com",
+      email: "samuelgoto@gmail.com",
       name: "Sam Goto",
       given_name: "Sam",
       picture: "https://pbs.twimg.com/profile_images/920758039325564928/vp0Px4kC_400x400.jpg",
