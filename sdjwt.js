@@ -104,7 +104,11 @@ async function verify(signature, data, pub) { // base64
 
 // @see https://auth0.com/docs/secure/tokens/json-web-tokens/json-web-token-structure
 async function generateJWT(p) {
-  const header = JSON.stringify({ alg: 'ES256', typ: 'JWT' });
+  const header = JSON.stringify({
+    "alg": 'ES256',
+    "typ": 'JWT',
+    "jku": "https://issuer.sgo.to/jwks.json"
+  });
   const payload = JSON.stringify(p);
   const input = `${base64urlencode(header)}.${base64urlencode(payload)}`;
   const signature = await sign(input);
@@ -151,7 +155,7 @@ async function issue(holder, frame = []) {
     ["lastName", "Goto"],
   ]);
 
-  console.log(sdjwt);
+  // console.log(sdjwt);
   const {publicKey} = await keys;
   console.log(jwkToPem(await crypto.subtle.exportKey("jwk", publicKey)));
   

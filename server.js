@@ -18,7 +18,7 @@ app.use("/.well-known/web-identity", async (req, res) => {
   });
 });
 
-app.use("/.well-known/jwks.json", async (req, res) => {
+app.use("/jwks.json", async (req, res) => {
   res.set("Access-Control-Allow-Origin", "*");
 
   res.type("json");
@@ -29,9 +29,7 @@ app.use("/.well-known/jwks.json", async (req, res) => {
   delete key.key_ops;
   delete key.ext;
 
-  res.send({
-    keys: [key],
-  });
+  res.send([key]);
 });
 
 app.use("/fedcm.json", async function (req, res, next) {
