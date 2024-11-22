@@ -29,7 +29,9 @@ app.use("/jwks.json", async (req, res) => {
   delete key.key_ops;
   delete key.ext;
 
-  res.send([key]);
+  res.send({
+    keys: [key]
+  });
 });
 
 app.use("/fedcm.json", async function (req, res, next) {
