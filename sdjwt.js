@@ -130,7 +130,9 @@ async function issue(holder, frame = []) {
   const disclosures = frame.map(([name, value]) => disclose(name, value));
   
   const payload = {
-    cnf: holderKey,
+    cnf: {
+      jwk: holderKey,
+    },
     _sd: disclosures.map((disclosure) => sha256(disclosure))
   };
 
