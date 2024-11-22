@@ -47,13 +47,13 @@ app.use("/fedcm.json", async function (req, res, next) {
     // types: ["indieauth"],
     scheme: "issuer",
     branding: {
-	     background_color: "#1a73e8",
-	     color: "#fff",
-	     icons: [{
-        url: "https://accounts.google.com/gsi-static/google-logo.png",
+	background_color: "#1a73e8",
+	color: "#fff",
+	icons: [{
+        url: "https://cdn-icons-png.flaticon.com/512/25/25231.png",
         size: 32
       }, {
-        url: "https://accounts.google.com/gsi-static/google-logo_40.png",
+        url: "https://cdn-icons-png.flaticon.com/512/25/25231.png",
         size: 40
       }]
     },
@@ -102,7 +102,7 @@ app.post("/id_assertion_endpoint", async (req, res) => {
 
   const sdjwt = await issue(holder, [
     ["sub", "https://sgo.to"],
-    ["email", "goto@google.com"],
+    ["email", "samuelgoto@gmail.com"],
     ["name", "Sam Goto"],
     ["picture", "https://pbs.twimg.com/profile_images/920758039325564928/vp0Px4kC_400x400.jpg"],
     ["firstName", "Sam"],
