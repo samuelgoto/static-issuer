@@ -38,8 +38,8 @@ app.use("/fedcm.json", async function (req, res, next) {
   res.type("json");
   res.send({
     accounts_endpoint: "/accounts",
-    vc_issuance_endpoint: "/vc_issuance_endpoint.json",
-    id_assertion_endpoint: "/vc_issuance_endpoint.json",
+    vc_issuance_endpoint: "/vc_issuance_endpoint",
+    id_assertion_endpoint: "/vc_issuance_endpoint",
     client_metadata_endpoint: "/client_metadata",
     id_assertion_endpoint: "/id_assertion_endpoint",
     revocation_endpoint: "/revoke_endpoint.json",
