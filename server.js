@@ -38,13 +38,14 @@ app.use("/fedcm.json", async function (req, res, next) {
   res.type("json");
   res.send({
     accounts_endpoint: "/accounts",
-    id_token_endpoint: "/idtoken_endpoint.json",
+    vc_issuance_endpoint: "/vc_issuance_endpoint.json",
     client_metadata_endpoint: "/client_metadata",
     id_assertion_endpoint: "/id_assertion_endpoint",
     revocation_endpoint: "/revoke_endpoint.json",
     metrics_endpoint: "/metrics_endpoint.json",
     login_url: "/",
     // types: ["indieauth"],
+    formats: ["vc+sd-jwt"],
     scheme: "issuer",
     branding: {
 	background_color: "#1a73e8",
@@ -90,10 +91,10 @@ app.use("/client_metadata", (req, res) => {
 
 const tokens = {};
 
-app.post("/id_assertion_endpoint", async (req, res) => {
+app.post("/vc_issuance_endpoint", async (req, res) => {
   res.type("json");
-  res.set("Access-Control-Allow-Origin", req.headers.origin);
-  res.set("Access-Control-Allow-Credentials", "true");
+  //res.set("Access-Control-Allow-Origin", req.headers.origin);
+  //res.set("Access-Control-Allow-Credentials", "true");
 
   console.log("What the Issuer got:");
   console.log(req.body);
