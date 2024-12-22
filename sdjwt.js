@@ -146,7 +146,7 @@ async function issue(holder, frame = []) {
 
 (async () => {
   return;  
-  const holder = "eyJjcnYiOiJQLTI1NiIsImt0eSI6IkVDIiwieCI6ImhfTGI2bGkzc05CU281RjB1TDNZa1BUemtZby1peEpGZmdqWWp4Z2thbk0iLCJ5IjoiNzZpZ3dsMkp3WkdBc3dMbVpwMjZ4a3B2Ulk4YmhxemhoVW9tUEhDMWdsVSJ9";
+  const holder = `{"crv":"P-256","kty":"EC","x":"h_Lb6li3sNBSo5F0uL3YkPTzkYo-ixJFfgjYjxgkanM","y":"76igwl2JwZGAswLmZp26xkpvRY8bhqzhhUomPHC1glU"}`;
 
   const sdjwt = await issue(holder, [
     ["sub", "https://sgo.to"],
