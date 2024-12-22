@@ -3,6 +3,10 @@ const { createHash, randomBytes } = require("crypto");
 const jwkToPem = require('jwk-to-pem');
 const crypto = globalThis.crypto;
 
+// We can cange the base url by setting environment variable `DEFAULT_BASE_URL`.
+const DEFAULT_BASE_URL = "http://localhost:8080"
+const BASE_URL = process.env.BASE_URL ? process.env.BASE_URL : DEFAULT_BASE_URL
+
 const sha256 = (message) =>
       Base64Url.encode(createHash("sha256").update(message).digest("base64"));
 
@@ -107,7 +111,7 @@ async function generateJWT(p) {
   const header = JSON.stringify({
     "alg": 'ES256',
     "typ": 'JWT',
-    "jku": "https://issuer.sgo.to/jwks.json"
+    "jku": `${BASE_URL}/jwks.json`
   });
   const payload = JSON.stringify(p);
   const input = `${base64urlencode(header)}.${base64urlencode(payload)}`;
