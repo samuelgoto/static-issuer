@@ -72,7 +72,7 @@ app.use("/accounts", (req, res) => {
     accounts: [{
       id: "1234",
       account_id: "1234",
-      email: "samuelgoto@gmail.com",
+      email: "me@sgo.to",
       name: "Sam Goto",
       given_name: "Sam",
       picture: "https://pbs.twimg.com/profile_images/920758039325564928/vp0Px4kC_400x400.jpg",
@@ -104,7 +104,7 @@ app.post("/vc_issuance_endpoint", async (req, res) => {
 
   const sdjwt = await issue(holder, [
     ["sub", "https://sgo.to"],
-    ["email", "samuelgoto@gmail.com"],
+    ["email", "me@sgo.to"],
     ["name", "Sam Goto"],
     ["picture", "https://pbs.twimg.com/profile_images/920758039325564928/vp0Px4kC_400x400.jpg"],
     ["firstName", "Sam"],
